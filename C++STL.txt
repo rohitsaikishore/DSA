@@ -1,0 +1,169 @@
+in the C++ stl we have multiple this , in this first i will talk about the pair
+pair
+========================================
+in the pair we can store 2 values, like int,char or int, int or int, double,.... in can be vector,map,.............
+this is the use of pair
+to access the first value, we use the pair_name.first and for the second value we use the pair_name.second.
+we can also declare the array of pair.
+int main(){
+	pair<int,char>p[3];
+	for(int i=0;i<3;i++){
+		p[i].first=i;
+		p[i].second='z'-i;
+	}
+	//now i will assign the iterator
+	
+	for(int it=0;it<3;it++){
+		cout<<p[it].first<<"  "<<p[it].second<<endl;
+	}
+	return 0;
+}
+we can also use the make_pair(value1,value2);
+or we can also use like pair<int,char>p={1,'a'}
+
+
+this is all about the pair
+==================================================================================================================
+vector-> vector is similar to arrays, but arrays once we have declared we cannot change the size of the array, like we will declare array of large size sometimes but we will not use the entire array size , and also sometimes we declare the small array but at the end we require space to accomodate some more elements.
+some of the functions are
+
+1)push_back(); -> to add the elements at the back;
+
+2)pop_back();-> to remove the elements from the back;
+
+3)find(starting positon,ending position,element)-> this will return the iterator at the pointing to the element;
+
+4)variable_erase(ir,itr+x)-> this function will take the iterators as the parameters like, starting iterator,ending iterator and will erase the elements upto ending iterator -1;
+
+5)size()--> returns the number of elements in the iterator.
+
+6)front() --> returns the front element in the array;
+
+int main(){
+	vector<int>v;
+	for(int i=0;i<9;i++){
+		v.push_back(i*2);
+	}
+	v.push_back(-3);
+	//now we will assign the iterators
+	vector<int>:: iterator it;
+	for(it=v.begin();it!=v.end();it++){
+		cout<<*it<<"  ";
+	}
+	cout<<endl<<endl<<endl;
+	to remove the element from the vector we use pop_back();
+	v.pop_back();
+
+	for(it=v.begin();it!=v.end();it++){
+		cout<<*it<<"  ";
+	}
+	auto itr=find(v.begin(),v.end(),8);
+	v.erase(itr,itr+3);
+	for(it=itr;it!=v.end();it++){
+		cout<<*it<<" ";
+	}
+	return 0;
+}
+
+output
+0  2  4  6  8  10  12  14  16  -3  
+
+
+0  2  4  6  8  10  12  14  16  14 16 
+
+=============================================================================================================
+
+LIST
+the main difference between the vector and list is vector supports the insertion at the back , the list supports the insertion at the front.
+list uses the linked list approach
+we use the methods like 
+push_front();
+pop_front();
+and we can use the other fucntions similar to vector
+int main(){
+	list<int>l;
+	for(int i=0;i<10;i++){
+		l.push_front(i*2);
+	}
+	list<int>::iterator it;
+	for(it=l.begin();it!=l.end();it++){
+		cout<<*it<<" ";
+	}
+	return 0;
+}
+18 16 14 12 10 8 6 4 2 0
+
+==========================================================================================================
+stack
+stack is a last in first out datastructure ,
+stack<int>s;
+we have the methods like
+s.push(ele);
+s.pop();
+s.top();
+s.empty()-> returns true  if there are no elements in the stack
+============================================================================================================
+Queue
+
+queue is a last in first out datastructure ,
+queue<int>q;
+we have methods like
+push()-> inserts the elements in the front
+pop()-> removes the element from the front;
+empty()-> if there are no elements in the queue, returns true, else return false;;
+top()->retuns the top element 
+=================================================================================================================
+priority_queue
+
+priority_queue by default stores the elements in the descending order, follows the max heap property
+we have methods like
+push();
+pop()
+empty();
+top();
+
+if we want the priority_queue to store the elements in the increasing order or ascending order
+then we declare the priority_queue as 
+priority_queue<data_type,vector<data_type>,comparator>>variable;
+by default we can use the comparator as the greater<int>;
+====================================================================================================================
+set 
+set stores the elements in the ascending order, does not allow the duplicate values;
+we use the 
+insert(element) -> to insert into the set
+we can use the methods like find(),erase(),.....
+
+unordered_set --> stores the elements in the random order , but does not duplicate elements
+multiset-> stores the elements in the ascending order but stores the duplicates,i,e duplicate elemetns are preseved
+
+======================================================================================================================
+Map 
+the main use of the map is to store the elements in the form of the key value pairs and these key value pairs are sorted in the ascending order based on the key,
+
+if the keys are overwritten it will the store the last updated value in the key value of pair of the respective key
+map_name.insert({key,value});
+   or
+   map_name[key]=respective value for the key.
+
+unordered_map
+this unorderd_map will store the elements in the random order
+
+multimap-> stores the elements in the ascending order of the key, but allows the duplicates
+in the multi map , we use the method equal_range(key) -> returns a pair of iterators that point to the starting and ending values of key ranges.
+auto it=multi_map.equal_range(key);
+the iterator are it.first and it.second
+it.second points to next element after the specified key, so we need to use only up to it.second-1;
+====================================================================================================================================
+
+comparator --> the comparator provides the solution to the problems.
+should a comes before b;
+the comparator in c++ only returns true or false, if true, then places the a before b, if false places after b;
+
+bool customComparator(int a, int b){
+    if(a>b){
+        return false;
+    }
+    else return true;
+}
+
+==============================================================================================================================
